@@ -19,13 +19,19 @@
 
 Terminal 1
 cd code-tuner-viz-frontend
+
+
 npm install
+
 npm run dev
 
 Terminal 2
 cd code-tuner-viz-backend
+
 npm install
+
 npx prisma generate
+
 npm run dev
 
 CMD to create an SSH tunnel to the backend that is hosted on poseidon.
