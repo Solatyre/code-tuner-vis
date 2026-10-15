@@ -1,50 +1,58 @@
 # Code Tuner Viz
 
-Dashboard for visualising software complexity metrics (class sizes, complexity distribution and trends over time).
+A full-stack dashboard for visualising software complexity metrics, so you can see at a glance where a codebase is getting harder to maintain.
 
-## Overview
-- **Frontend:** React + Vite + TypeScript + Recharts
-- **Backend:** Node.js + Express + TypeScript
-- **Database:** PostgreSQL (Poseidon)
-- **ORM:** Prisma
-- **Charts:** Recharts
+![Code Tuner Viz screenshot](docs/screenshot.png)
+<!-- Add a screenshot at docs/screenshot.png -->
 
 ## Features
-- **Overview:** High-level project metrics
-- **Histogram:** Complexity distribution (fixed buckets)
-- **Class Sizes:** LOC per class + raw table
-- **Trend:** Complexity over time
-- **Benchmarks:** Compare repositories
 
+- **Overview** – high-level project metrics in one view
+- **Histogram** – distribution of complexity across fixed buckets
+- **Class sizes** – lines of code per class, with the raw data table
+- **Trend** – how complexity changes over time
+- **Benchmarks** – compare repositories side by side
 
-----------------------------------------------------------------------------------
+## Tech stack
 
+| Layer    | Tools                                  |
+|----------|----------------------------------------|
+| Frontend | React, Vite, TypeScript, Recharts      |
+| Backend  | Node.js, Express, TypeScript           |
+| Database | PostgreSQL with Prisma ORM             |
 
+## Getting started
 
-Terminal 1
-cd code-tuner-viz-frontend
+**Prerequisites:** Node.js 18+ and a PostgreSQL database.
 
+1. Copy the environment file and add your database URL:
 
-npm install
+   ```bash
+   cp .env.example .env
+   ```
 
-npm run dev
+2. Start the backend (terminal 1):
 
-Terminal 2
-cd code-tuner-viz-backend
+   ```bash
+   cd code-tuner-viz-backend
+   npm install
+   npx prisma generate
+   npm run dev
+   ```
 
-npm install
+3. Start the frontend (terminal 2):
 
-npx prisma generate
+   ```bash
+   cd code-tuner-viz-frontend
+   npm install
+   npm run dev
+   ```
 
-npm run dev
+4. Open the URL Vite prints (usually http://localhost:5173).
 
-CMD to create an SSH tunnel to the backend that is hosted on poseidon.
-ssh -N -L 15432:127.0.0.1:5432 hc25-33@pacifically-bugaboo.poseidon.salford.ac.uk 
-It will ask for a password make sure that you enter this correctly it will not show as your typing so make sure you know what your pressing the password is: jai&nahFe0xi
+## Project structure
 
-Make sure that you have NodeJS installed on your machine and also if you encounter issues when trying to run npm inside of visual studio code then youll have to give your machine access.
-https://nodejs.org/dist/v25.3.0/node-v25.3.0-x64.msi
-
-Powershell: 
-Set-ExecutionPolicy RemoteSigned
-Then restart VS Code
+```
+code-tuner-viz-backend/    Express API + Prisma schema
+code-tuner-viz-frontend/   React app (pages, charts, API clients)
+```
